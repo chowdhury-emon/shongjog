@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <header className="sticky top-0 z-50 bg-background">
             <Navbar></Navbar>
           </header>
-          <main className="container mx-auto my-8">
+          <main className="container mx-auto">
             {children}
           </main>
           <footer></footer>
