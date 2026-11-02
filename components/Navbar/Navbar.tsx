@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
-import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { LuCalendarDays, LuMenu, LuX } from "react-icons/lu";
