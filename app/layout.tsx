@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
+import {Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar/Navbar";
+import { Providers } from "@/app/providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,15 +22,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       className={`${inter.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
-      <body className="dark min-h-full flex flex-col">
-        <header></header>
-        <main>
-          {children}
-        </main>
-        <footer></footer>
+      <body className="min-h-full flex flex-col">
+        <Providers>
+          <header className="sticky top-0 z-50 bg-background">
+            <Navbar></Navbar>
+          </header>
+          <main className="container mx-auto my-8">
+            {children}
+          </main>
+          <footer></footer>
+        </Providers>
       </body>
     </html>
   );

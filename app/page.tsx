@@ -1,11 +1,9 @@
-import { Button } from "@heroui/react";
+import Hero from "@/components/Home/Hero";
 
 export default function Home() {
   return (
-    <div className="text-center">
-      <h1>Shongjog</h1>
-      <p>A Social Development Event Platform</p>
-      <Button className={"mt-6"}>Create Event</Button>
+    <div>
+      <Hero></Hero>
     </div>
   );
 }
