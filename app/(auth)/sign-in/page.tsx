@@ -100,11 +100,11 @@ export default function SignInPage() {
 
           <TextField
             isRequired
-            minLength={8}
+            minLength={6}
             name="password"
             type="password"
             validate={(value) => {
-              if (value.length < 8) {
+              if (value.length < 6) {
                 return "Password must be at least 8 characters long.";
               }
               return null;

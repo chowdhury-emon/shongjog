@@ -1,6 +1,7 @@
+
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import {
   Button,
   FieldError,
@@ -12,7 +13,7 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -22,32 +23,99 @@ export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
   const route = useRouter();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
       const formData = new FormData(e.currentTarget);
-      const userData = Object.fromEntries(formData.entries());
+
+      const name = String(formData.get("name") ?? "").trim();
+      const email = String(formData.get("email") ?? "").trim();
+      const passwordValue = String(formData.get("password") ?? "");
+      const confirmPassword = String(
+        formData.get("confirmPassword") ?? "",
+      );
+      const photoURL = String(formData.get("photoURL") ?? "").trim();
+
+      // Validate password requirements.
+      if (
+        passwordValue.length < 6 ||
+        !/[A-Z]/.test(passwordValue) ||
+        !/[a-z]/.test(passwordValue)
+      ) {
+        toast.danger(
+          "Password must be at least 6 characters and contain an uppercase and a lowercase letter.",
+        );
+        return;
+      }
+
+      if (passwordValue !== confirmPassword) {
+        toast.danger("Passwords do not match.");
+        return;
+      }
+
+      // Validate the photo URL only when provided.
+      if (photoURL) {
+        try {
+          const url = new URL(photoURL);
+
+          if (url.protocol !== "http:" && url.protocol !== "https:") {
+            throw new Error("Invalid URL protocol");
+          }
+        } catch {
+          toast.danger("Please enter a valid photo URL.");
+          return;
+        }
+      }
 
       const { data, error } = await signUp.email({
-        name: userData.name as string,
-        email: userData.email as string,
-        password: userData.password as string,
+        name,
+        email,
+        password: passwordValue,
+        image: photoURL || "",
         callbackURL: "/",
       });
-
-      if (data) {
-        route.push("/")
-        toast.success("Your account has been created successfully.");
-      }
 
       if (error) {
         if (error.status === 422) {
           toast.danger("An account with this email already exists.");
         } else {
-          toast.danger(error.message || "Unable to create your account. Please try again.");
+          toast.danger(
+            error.message ||
+              "Unable to create your account. Please try again.",
+          );
         }
+        return;
+      }
+
+      if (data) {
+        toast.success("Your account has been created successfully.");
+        route.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.danger("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSocialSignIn = async (
+    provider: "google" | "github",
+  ) => {
+    setIsLoading(true);
+
+    try {
+      const { error } = await signIn.social({
+        provider,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.danger(
+          error.message || "Unable to sign in. Please try again.",
+        );
       }
     } catch (error) {
       console.error(error);
@@ -117,15 +185,54 @@ export default function SignUpPage() {
           </TextField>
 
           <TextField
+            name="photoURL"
+            type="url"
+            validate={(value) => {
+              if (!value.trim()) return null;
+
+              try {
+                const url = new URL(value);
+
+                if (
+                  url.protocol !== "http:" &&
+                  url.protocol !== "https:"
+                ) {
+                  return "Photo URL must start with http:// or https://.";
+                }
+
+                return null;
+              } catch {
+                return "Please enter a valid photo URL.";
+              }
+            }}
+          >
+            <Label>Profile photo URL (optional)</Label>
+            <Input
+              placeholder="https://example.com/photo.jpg"
+              autoComplete="url"
+            />
+            <FieldError />
+          </TextField>
+
+          <TextField
             isRequired
-            minLength={8}
+            minLength={6}
             name="password"
             type="password"
             onChange={setPassword}
             validate={(value) => {
-              if (value.length < 8) {
-                return "Password must be at least 8 characters long.";
+              if (value.length < 6) {
+                return "Password must be at least 6 characters long.";
               }
+
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter.";
+              }
+
+              if (!/[a-z]/.test(value)) {
+                return "Password must contain at least one lowercase letter.";
+              }
+
               return null;
             }}
           >
@@ -139,16 +246,17 @@ export default function SignUpPage() {
 
           <TextField
             isRequired
-            minLength={8}
             name="confirmPassword"
             type="password"
             validate={(value) => {
-              if (value.length < 8) {
-                return "Password must be at least 8 characters long.";
+              if (!value) {
+                return "Please confirm your password.";
               }
+
               if (password !== value) {
                 return "Passwords do not match.";
               }
+
               return null;
             }}
           >
@@ -182,6 +290,8 @@ export default function SignUpPage() {
                 type="button"
                 variant="outline"
                 className="w-full"
+                isDisabled={isLoading}
+                onPress={() => handleSocialSignIn("google")}
               >
                 <FcGoogle />
                 Google
@@ -191,6 +301,8 @@ export default function SignUpPage() {
                 type="button"
                 variant="outline"
                 className="w-full"
+                isDisabled={isLoading}
+                onPress={() => handleSocialSignIn("github")}
               >
                 <FaGithub />
                 GitHub

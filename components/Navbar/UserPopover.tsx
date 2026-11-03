@@ -23,7 +23,7 @@ export default function UserPopover() {
                                 src={image}
                                 alt={`${name || "User"}'s profile picture`}
                                 fill
-                                sizes="40px"
+                                sizes="100px"
                                 className="object-cover"
                             />
                         ) : (

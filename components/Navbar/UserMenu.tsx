@@ -27,13 +27,13 @@ export default function UserMenu() {
 
     return (
         <div className="grid items-center gap-2">
-            <div className="relative size-16 shrink-0 overflow-hidden rounded-xl border border-border">
+            <div className="relative size-25 shrink-0 overflow-hidden rounded-xl border border-border">
                 {image ? (
                     <Image
                         src={image}
                         alt={`${name || "User"}'s profile picture`}
                         fill
-                        sizes="40px"
+                        sizes="200px"
                         className="object-cover"
                     />
                 ) : (
