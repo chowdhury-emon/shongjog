@@ -1,4 +1,3 @@
-
 "use client";
 
 import { signIn } from "@/lib/auth-client";
@@ -14,7 +13,7 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
@@ -22,32 +21,60 @@ export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
       const formData = new FormData(e.currentTarget);
-      const userData = Object.fromEntries(formData.entries());
+      const email = String(formData.get("email") ?? "");
+      const password = String(formData.get("password") ?? "");
 
       const { data, error } = await signIn.email({
-        email: userData.email as string,
-        password: userData.password as string,
-        callbackURL: "/"
+        email,
+        password,
+        callbackURL: "/",
       });
-
-      if (data) {
-        router.push("/");
-        toast.success("Welcome back! You've signed in successfully.");
-      }
 
       if (error) {
         if (error.status === 401) {
           toast.danger("Incorrect email or password. Please try again.");
         } else {
-          toast.danger(error.message || "Unable to sign in. Please try again.");
+          toast.danger(
+            error.message || "Unable to sign in. Please try again.",
+          );
         }
         console.error(error);
+        return;
+      }
+
+      if (data) {
+        toast.success("Welcome back! You've signed in successfully.");
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.danger("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSocialSignIn = async (
+    provider: "google" | "github",
+  ) => {
+    setIsLoading(true);
+
+    try {
+      const { error } = await signIn.social({
+        provider,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.danger(
+          error.message || "Unable to sign in. Please try again.",
+        );
       }
     } catch (error) {
       console.error(error);
@@ -105,7 +132,7 @@ export default function SignInPage() {
             type="password"
             validate={(value) => {
               if (value.length < 6) {
-                return "Password must be at least 8 characters long.";
+                return "Password must be at least 6 characters long.";
               }
               return null;
             }}
@@ -140,6 +167,8 @@ export default function SignInPage() {
                 type="button"
                 variant="outline"
                 className="w-full"
+                isDisabled={isLoading}
+                onPress={() => handleSocialSignIn("google")}
               >
                 <FcGoogle />
                 Google
@@ -149,6 +178,8 @@ export default function SignInPage() {
                 type="button"
                 variant="outline"
                 className="w-full"
+                isDisabled={isLoading}
+                onPress={() => handleSocialSignIn("github")}
               >
                 <FaGithub />
                 GitHub

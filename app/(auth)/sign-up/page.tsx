@@ -33,9 +33,7 @@ export default function SignUpPage() {
       const name = String(formData.get("name") ?? "").trim();
       const email = String(formData.get("email") ?? "").trim();
       const passwordValue = String(formData.get("password") ?? "");
-      const confirmPassword = String(
-        formData.get("confirmPassword") ?? "",
-      );
+      const confirmPassword = String(formData.get("confirmPassword") ?? "");
       const photoURL = String(formData.get("photoURL") ?? "").trim();
 
       // Validate password requirements.
@@ -83,7 +81,7 @@ export default function SignUpPage() {
         } else {
           toast.danger(
             error.message ||
-              "Unable to create your account. Please try again.",
+            "Unable to create your account. Please try again.",
           );
         }
         return;

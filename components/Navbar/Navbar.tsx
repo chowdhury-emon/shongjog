@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { LuCalendarDays, LuMenu, LuX } from "react-icons/lu";
 import { useSession } from "@/lib/auth-client";
-import SigningButtons from "@/components/Navbar/SigningButtons";
 import UserMenu from "@/components/Navbar/UserMenu";
 import UserPopover from "@/components/Navbar/UserPopover";
 
@@ -23,6 +22,24 @@ export default function Navbar() {
             Upcomming Events
         </Link>
     );
+
+    const signingButtons = (
+        <>
+            <Link href={"/sign-in"}
+                className="button button--secondary text-accent"
+                onClick={() => setIsMenuOpen(false)}
+            >
+                Sign In
+            </Link>
+            <Link href={"/sign-up"}
+                className="button button--primary text-background"
+                onClick={() => setIsMenuOpen(false)}
+
+            >
+                Sign Up
+            </Link>
+        </>
+    )
 
     return (
         <div className="container relative mx-auto max-h-20 h-fit flex justify-between items-center px-2 sm:px-0">
@@ -44,12 +61,12 @@ export default function Navbar() {
                 {
                     session
                         ? <UserPopover />
-                        : <SigningButtons />
+                        : signingButtons
                 }
             </div>
 
 
-{/* MOBILE MENU */}
+            {/* MOBILE MENU */}
             <div className="flex items-center gap-4 md:hidden">
                 <button
                     className="aspect-square text-accent w-10 text-4xl active:scale-95"
@@ -81,7 +98,7 @@ export default function Navbar() {
                 </div>
                 {!session &&
                     <div className="grid gap-2 mt-8 *:w-full">
-                        <SigningButtons />
+                        {signingButtons}
                     </div>
                 }
             </nav>

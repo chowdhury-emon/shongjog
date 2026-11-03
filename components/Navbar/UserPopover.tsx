@@ -34,7 +34,7 @@ export default function UserPopover() {
                     </div>
                 </Popover.Trigger>
 
-                <Popover.Content placement="bottom right" className="max-w-fit border rounded-2xl">
+                <Popover.Content placement="bottom right" className="max-w-xs w-fit min-w-50 border rounded-2xl">
                     <Popover.Dialog>
                         <UserMenu />
                     </Popover.Dialog>

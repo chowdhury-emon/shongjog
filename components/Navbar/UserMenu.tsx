@@ -43,11 +43,11 @@ export default function UserMenu() {
                 )}
             </div>
 
-            <span className="max-w-32 truncate text-sm font-medium text-foreground md:max-w-40 capitalize">
+            <span className="truncate text-sm font-medium text-foreground capitalize">
                 {name || "User"}
             </span>
 
-            <span className="text-sm font-medium text-muted sm:max-w-40">
+            <span className="truncate text-sm font-medium text-muted">
                 {email}
             </span>
 
