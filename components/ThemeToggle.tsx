@@ -5,9 +5,11 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
 
-export default function ThemeToggle({ children }: { children?: string }) {
+export default function ThemeToggle({ label = false }: { label?: boolean }) {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
+    const themeLabel = theme === "dark" ? "Light Mode" : "Dark Mode";
+
 
     useEffect(() => {
         setMounted(true);
@@ -17,7 +19,7 @@ export default function ThemeToggle({ children }: { children?: string }) {
 
     return (
         <div>
-            <Button variant="outline" className={`${!children ? "aspect-square p-0" : "" } text-accent`}
+            <Button variant="outline" className={`${!label ? "aspect-square p-0" : ""} text-accent capitalize`}
                 onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
                 {
@@ -26,7 +28,7 @@ export default function ThemeToggle({ children }: { children?: string }) {
                         : <LuMoon className="text-slate-500" />
                 }
                 {
-                    children
+                    label && themeLabel
                 }
 
             </Button>

@@ -24,7 +24,7 @@ export default function Hero() {
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                     <Link
                         href="/upcoming-events"
-                        className="button button--primary w-full sm:w-fit p-6 text-white"
+                        className="button button--primary w-full sm:w-fit p-6 text-background"
                     >
                         <LuCalendarDays />
                         Explore events

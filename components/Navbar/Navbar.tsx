@@ -54,7 +54,7 @@ export default function Navbar() {
             >
                 <div className="grid gap-2">
                     <div className="flex items-center gap-2 text-accent">
-                        <ThemeToggle>Theme</ThemeToggle>
+                        <ThemeToggle label={true}></ThemeToggle>
                     </div>
                     <Link
                         href="/"
