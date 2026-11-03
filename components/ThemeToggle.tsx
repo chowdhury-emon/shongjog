@@ -18,20 +18,18 @@ export default function ThemeToggle({ label = false }: { label?: boolean }) {
     if (!mounted) return null;
 
     return (
-        <div>
-            <Button variant="outline" className={`${!label ? "aspect-square p-0" : ""} text-accent capitalize`}
-                onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-                {
-                    theme === "dark"
-                        ? <LuSun className="text-yellow-500" />
-                        : <LuMoon className="text-slate-500" />
-                }
-                {
-                    label && themeLabel
-                }
+        <Button variant="outline" className={`${!label ? "aspect-square p-0" : "w-full"} text-accent capitalize`}
+            onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+            {
+                theme === "dark"
+                    ? <LuSun className="text-yellow-500" />
+                    : <LuMoon className="text-slate-500" />
+            }
+            {
+                label && themeLabel
+            }
 
-            </Button>
-        </div>
+        </Button>
     );
 }

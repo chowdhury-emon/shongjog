@@ -12,12 +12,21 @@
   h1 {
     @apply text-4xl/normal sm:text-5xl/normal font-display font-semibold text-accent;
   }
+
   h2 {
     @apply text-3xl/normal sm:text-4xl/normal font-display font-semibold text-accent;
   }
 
   p {
     @apply text-base;
+  }
+
+  input {
+    @apply shadow-none! border! border-border!;
+  }
+
+  .toast {
+    @apply shadow-2xl border;
   }
 }
 

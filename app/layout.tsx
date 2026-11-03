@@ -3,6 +3,7 @@ import {Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Providers } from "@/app/providers";
+import { ToastProvider } from "@heroui/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <footer></footer>
+          <ToastProvider placement="top"></ToastProvider>
         </Providers>
       </body>
     </html>
