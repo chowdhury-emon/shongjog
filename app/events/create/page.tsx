@@ -17,6 +17,7 @@ import {
 } from "@heroui/react";
 import { today, getLocalTimeZone, type CalendarDate } from "@internationalized/date";
 import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const eventTypes = [
     "Cleanup",
@@ -34,6 +35,7 @@ export default function CreateEventPage() {
     const [dateError, setDateError] = useState<string | null>(null);
     const { data } = useSession();
     const { id: userId, email, name } = data?.user || {}
+    const router = useRouter();
 
     const minDate = today(getLocalTimeZone());
 
@@ -75,7 +77,8 @@ export default function CreateEventPage() {
             })
             if (res.ok) {
                 toast.success("Event created successfully")
-                handleReset();
+                // handleReset();
+                router.push("/events");
             }
         } catch (error) {
             console.log(error)
