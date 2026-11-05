@@ -45,7 +45,7 @@ export default function Hero() {
             </div>
 
             <div className="relative -mt-10 lg:-mt-30 xl:-mt-50 aspect-16/7 overflow-hidden rounded-2xl -z-1
-            bg-[radial-gradient(circle_at_bottom,var(--accent)_0%,var(--accent)_0%,transparent_70%)]">
+            bg-[radial-gradient(circle_at_bottom,var(--accent)_0%,transparent_65%)]">
                 <Image
                     src="/banner.png"
                     alt="Community members working together on a local service initiative"

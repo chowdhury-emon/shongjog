@@ -15,7 +15,7 @@ export default function Navbar() {
 
     const upcommingEventButton = (
         <Link href={'/'}
-            className="button button--outline text-accent"
+            className="button button--primary text-background"
             onClick={() => setIsMenuOpen(false)}
         >
             <LuCalendarDays />
@@ -83,21 +83,21 @@ export default function Navbar() {
                 id="mobile-navigation"
                 aria-label="Mobile navigation"
                 hidden={!isMenuOpen}
-                className="absolute right-4 top-full z-50 grid gap-2 w-fit border border-border rounded-2xl p-4 shadow-xl md:hidden bg-surface"
+                className="absolute right-4 top-full z-50 grid gap-2 w-fit max-h-[80vh] overflow-y-auto scrollbar-none border border-border rounded-2xl p-4 shadow-xl md:hidden bg-surface"
             >
                 {session &&
-                    <div className="grid gap-2 pb-4 border-b mb-4 *:w-full">
+                    <div className="grid gap-2 pb-4 border-b mb-2 *:w-full">
                         <UserMenu />
                     </div>
                 }
-                <div className="grid gap-2">
+                <div className="grid gap-2 *:w-full">
                     {upcommingEventButton}
                     <div className="flex items-center gap-2 text-accent">
                         <ThemeToggle label={true}></ThemeToggle>
                     </div>
                 </div>
                 {!session &&
-                    <div className="grid gap-2 mt-8 *:w-full">
+                    <div className="grid gap-2 pt-8 border-t mt-2 *:w-full">
                         {signingButtons}
                     </div>
                 }

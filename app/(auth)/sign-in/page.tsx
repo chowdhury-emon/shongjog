@@ -92,7 +92,7 @@ export default function SignInPage() {
             Welcome to Shongjog
           </p>
 
-          <h2>Good to have you back.</h2>
+          <h2 className="hidden md:block">Good to have you back.</h2>
 
           <p className="mt-3 text-sm leading-6 text-muted">
             Sign in to discover upcoming events, reconnect with your
