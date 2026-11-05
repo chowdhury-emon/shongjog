@@ -34,7 +34,6 @@ export default function Navbar() {
             <Link href={"/sign-up"}
                 className="button button--primary text-background"
                 onClick={() => setIsMenuOpen(false)}
-
             >
                 Sign Up
             </Link>

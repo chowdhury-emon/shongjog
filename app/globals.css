@@ -28,6 +28,10 @@
   .toast {
     @apply shadow-2xl border;
   }
+
+  .select__popover {
+    @apply border shadow-xl!;
+  }
 }
 
 body {
