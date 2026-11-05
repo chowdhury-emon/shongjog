@@ -38,7 +38,7 @@ export default function NotFound() {
                 </Link>
 
                 <Link
-                    href="/upcoming-events"
+                    href="/events"
                     className="button button--outline mx-auto"
                 >
                     Explore events

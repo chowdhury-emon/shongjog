@@ -23,7 +23,7 @@ export default function Hero() {
 
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                     <Link
-                        href="/upcoming-events"
+                        href="/events"
                         className="button button--primary w-full sm:w-fit p-6 text-background"
                     >
                         <LuCalendarDays />
@@ -31,7 +31,7 @@ export default function Hero() {
                     </Link>
 
                     <Link
-                        href="/create-event"
+                        href="events/create"
                         className="button button--outline w-full sm:w-fit p-6 text-accent border-accent"
                     >
                         <LuCirclePlus />

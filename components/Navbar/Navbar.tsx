@@ -13,13 +13,13 @@ export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { data: session } = useSession();
 
-    const upcommingEventButton = (
-        <Link href={'/'}
+    const upcomingEventsButton = (
+        <Link href={'/events'}
             className="button button--primary text-background"
             onClick={() => setIsMenuOpen(false)}
         >
             <LuCalendarDays />
-            Upcomming Events
+            Upcoming Events
         </Link>
     );
 
@@ -52,7 +52,7 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden md:flex md:items-center gap-2">
-                {upcommingEventButton}
+                {upcomingEventsButton}
                 <ThemeToggle></ThemeToggle>
             </div>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                     </div>
                 }
                 <div className="grid gap-2 *:w-full">
-                    {upcommingEventButton}
+                    {upcomingEventsButton}
                     <div className="flex items-center gap-2 text-accent">
                         <ThemeToggle label={true}></ThemeToggle>
                     </div>

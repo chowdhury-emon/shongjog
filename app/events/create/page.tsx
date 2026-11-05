@@ -244,6 +244,10 @@ export default function CreateEventPage() {
                             </p>
                         </div>
 
+                        <div className="text-sm">
+                            Attached email: <span className="text-accent">{email}</span>
+                        </div>
+
                         {/* Actions */}
                         <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:justify-end">
                             <Button
@@ -256,7 +260,7 @@ export default function CreateEventPage() {
 
                             <Button
                                 type="submit"
-                                className="w-full sm:w-auto"
+                                className="w-full text-background sm:w-auto"
                             >
                                 Create Event
                             </Button>
