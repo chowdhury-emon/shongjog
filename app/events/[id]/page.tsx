@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { Button, Card, Chip, Skeleton, toast } from "@heroui/react";
 import { LuArrowLeft, LuCalendarDays, LuCheck, LuLeaf, LuMapPin, LuSprout, LuUserRound } from "react-icons/lu";
 import { useSession } from "@/lib/auth-client";
@@ -170,26 +169,7 @@ export default function EventDetailsPage() {
 
   // Error / Not Found State
   if (error && !event) {
-    return (
-      <section className="flex min-h-screen items-center justify-center bg-background px-5">
-        <div className="text-center">
-          <LuLeaf className="mx-auto mb-5 h-12 w-12 text-accent" aria-hidden="true" />
-
-          <h1 className="mb-4 text-3xl">
-            Event Not Found
-          </h1>
-
-          <p className="mb-7 text-muted">{error}</p>
-
-          <Button
-            variant="primary"
-            onPress={() => router.push("/events")}
-          >
-            Explore Events
-          </Button>
-        </div>
-      </section>
-    );
+    notFound();
   }
 
   if (!event) return null;

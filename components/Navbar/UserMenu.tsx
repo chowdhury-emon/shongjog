@@ -54,17 +54,17 @@ export default function UserMenu() {
     return (
         <div className="grid items-center gap-2">
 
-            <div className="relative size-25 shrink-0 overflow-hidden rounded-xl border border-border">
+            <div className="relative size-20 shrink-0 overflow-hidden rounded-xl border border-border">
                 {image ? (
                     <Image
                         src={image}
                         alt={`${name || "User"}'s profile picture`}
                         fill
-                        sizes="100px"
+                        sizes="200px"
                         className="object-cover"
                     />
                 ) : (
-                    <div className="grid size-full place-items-center bg-accent/10 text-lg font-bold text-accent">
+                    <div className="grid size-full place-items-center bg-accent/10 text-3xl font-bold text-accent">
                         {initial}
                     </div>
                 )}
@@ -86,7 +86,7 @@ export default function UserMenu() {
                         <Link
                             key={item.link}
                             href={item.link}
-                            className="button button--ghost text-accent flex justify-start items-center gap-2 w-full"
+                            className="button button--ghost text-accent flex justify-start items-center gap-2 w-full transition-all not-hover:pl-0"
                         >
                             <Icon size={18} />
                             {item.label}

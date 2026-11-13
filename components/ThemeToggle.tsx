@@ -18,7 +18,7 @@ export default function ThemeToggle({ label = false }: { label?: boolean }) {
     if (!mounted) return null;
 
     return (
-        <Button variant="outline" className={`${!label ? "aspect-square p-0" : "w-full"} text-accent capitalize`}
+        <Button variant="outline" className={`${!label ? "aspect-square p-0" : "w-full"} text-accent border-accent/50 capitalize`}
             onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
             {

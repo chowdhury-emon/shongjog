@@ -5,14 +5,14 @@ import { LuCalendarDays, LuCirclePlus } from "react-icons/lu";
 
 export default function Hero() {
     return (
-        <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
+        <section className="mx-auto w-full px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
             <div className="mx-auto max-w-3xl text-center">
                 <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent/70">
                     Community · Action · Change
                 </p>
 
                 <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-                    Good things happen when people show up.
+                    Good things happen when people show up
                 </h1>
 
                 <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
@@ -24,7 +24,7 @@ export default function Hero() {
                 <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                     <Link
                         href="/events"
-                        className="button button--primary w-full sm:w-fit p-6 text-background"
+                        className="button button--primary w-full sm:w-fit p-6 text-foreground"
                     >
                         <LuCalendarDays />
                         Explore events
@@ -32,7 +32,7 @@ export default function Hero() {
 
                     <Link
                         href="events/create"
-                        className="button button--outline w-full sm:w-fit p-6 text-accent border-accent"
+                        className="button button--outline w-full sm:w-fit p-6 text-accent border-accent/70"
                     >
                         <LuCirclePlus />
                         Organize an event
@@ -45,13 +45,13 @@ export default function Hero() {
             </div>
 
             <div className="relative -mt-10 lg:-mt-30 xl:-mt-50 aspect-16/7 overflow-hidden rounded-2xl -z-1
-            bg-[radial-gradient(circle_at_bottom,var(--accent)_0%,transparent_65%)]">
+            bg-[radial-gradient(circle_at_bottom,var(--circle)_0%,transparent_60%)]
+            ">
                 <Image
                     src="/banner.png"
                     alt="Community members working together on a local service initiative"
                     fill
                     priority
-                    sizes="(max-width: 1500px) 100vw, 1500px"
                     className="object-cover"
                 />
             </div>
@@ -66,7 +66,7 @@ export default function Hero() {
                         key={stat.label}
                         className="rounded-xl border border-border bg-background p-5 text-center transition-transform duration-200 hover:-translate-y-1"
                     >
-                        <p className="text-2xl font-semibold text-warning/70 sm:text-3xl">
+                        <p className="text-2xl font-semibold text-accent sm:text-3xl">
                             {stat.number}
                         </p>
                         <p className="mt-2 text-sm text-muted">{stat.label}</p>

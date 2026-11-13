@@ -41,13 +41,13 @@ export default function Navbar() {
     )
 
     return (
-        <div className="container relative mx-auto max-h-20 h-fit flex justify-between items-center px-2 sm:px-0">
+        <div className="container relative mx-auto max-h-20 h-fit flex justify-between items-center px-2 sm:px-0 z-50">
             <Link href={"/"} className="flex w-fit items-center">
                 <Image src={"/shongjog-logo.svg"}
                     height={500}
                     width={500}
                     alt="banner"
-                    className="w-15 aspect-square object-contain" />
+                    className="w-15 aspect-square object-contain " />
                 <h2>Shongjog</h2>
             </Link>
 
@@ -82,7 +82,7 @@ export default function Navbar() {
                 id="mobile-navigation"
                 aria-label="Mobile navigation"
                 hidden={!isMenuOpen}
-                className="absolute right-4 top-full z-50 grid gap-2 w-fit max-h-[80vh] overflow-y-auto scrollbar-none border border-border rounded-2xl p-4 shadow-xl md:hidden bg-surface"
+                className="absolute right-4 top-full z-50 grid gap-2 w-fit max-h-[80vh] overflow-y-auto scrollbar-none border border-border rounded-2xl p-4 shadow-2xl dark:shadow-black/50 md:hidden bg-surface"
             >
                 {session &&
                     <div className="grid gap-2 pb-4 border-b mb-2 *:w-full">

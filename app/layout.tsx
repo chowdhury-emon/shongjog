@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Providers } from "@/app/providers";
@@ -31,8 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <header className="sticky top-0 z-50 bg-background">
             <Navbar></Navbar>
+            {/* <div className="absolute inset-0 -bottom-10 z-40 backdrop-blur-xl mask-b-from-12"></div> */}
           </header>
-          <main className="container mx-auto">
+          <main className="container mx-auto h-500">
             {children}
           </main>
           <footer></footer>
