@@ -24,10 +24,10 @@
   input {
     @apply shadow-none! border! border-border!;
   }
-/* 
+
   .button--primary {
-    @apply text-background dark:text-foreground!;
-  } */
+    @apply text-background!;
+  }
 
   .toast {
     @apply shadow-2xl border;

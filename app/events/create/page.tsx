@@ -62,7 +62,7 @@ export default function CreateEventPage() {
             eventType,
             thumbnailUrl: formData.get("thumbnailUrl"),
             location: formData.get("location"),
-            eventDate: eventDate.toString(),
+            eventDate: new Date(eventDate.toString()),
         };
         try {
             const finalEventData = { ...eventData, userId, email, name }
