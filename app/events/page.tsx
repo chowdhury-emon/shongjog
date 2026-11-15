@@ -1,23 +1,12 @@
-
+// app/events/page.tsx
+import type { Event } from "@/types/event.type";
 import { Chip } from "@heroui/react";
 import Link from "next/link";
 import { LuCirclePlus, LuMapPin, LuCalendarDays, LuArrowUpRight } from "react-icons/lu";
 
-interface Event {
-    _id: string;
-    title: string;
-    description: string;
-    eventType: string;
-    thumbnailUrl: string;
-    location: string;
-    eventDate: string;
-    userId: string;
-    email: string;
-    name: string;
-}
 
 export default async function Page() {
-    const res = await fetch("http://localhost:5000/events", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events`, {
         cache: "no-store",
     });
 
