@@ -8,7 +8,7 @@
   --font-display: var(--font-playfair-display);
 }
 
-@layer base {
+@layer utilities {
   h1 {
     @apply text-4xl/normal sm:text-5xl/normal font-display font-semibold text-accent;
   }
@@ -22,11 +22,11 @@
   }
 
   input {
-    @apply shadow-none! border! border-border!;
+    @apply shadow-none border border-border;
   }
 
   .button--primary {
-    @apply text-background!;
+    @apply text-background dark:text-foreground;
   }
 
   .toast {
@@ -34,7 +34,7 @@
   }
 
   .select__popover {
-    @apply border shadow-xl!;
+    @apply border shadow-xl;
   }
 }
 
@@ -45,6 +45,98 @@ body {
 }
 
 
+:root,
+.light,
+.default,
+[data-theme="light"],
+[data-theme="default"] {
+  --accent: oklch(43.29% 0.0547 225.74);
+  --accent-foreground: oklch(99.11% 0 0);
+  --background: oklab(99.47% -0.00744 0.02085);
+  /* --background: oklch(97.02% 0.0015 225.74); */
+  --border: oklch(90.00% 0.0015 225.74);
+  --danger: oklch(65.32% 0.2335 22.37);
+  --danger-foreground: oklch(99.11% 0 0);
+  --default: oklch(94.00% 0.0015 225.74);
+  --default-foreground: oklch(21.03% 0.0059 225.74);
+  --field-background: oklch(100.00% 0.0008 225.74);
+  --field-border: transparent;
+  --field-foreground: oklch(21.03% 0.0015 225.74);
+  --field-placeholder: oklch(55.17% 0.0030 225.74);
+  --focus: oklch(43.29% 0.0547 225.74);
+  --foreground: oklch(21.03% 0.0015 225.74);
+  --muted: oklch(55.17% 0.0030 225.74);
+  --overlay: oklch(100.00% 0.0004 225.74);
+  --overlay-foreground: oklch(21.03% 0.0015 225.74);
+  --scrollbar: oklch(87.10% 0.0015 225.74);
+  --segment: oklch(100.00% 0.0015 225.74);
+  --segment-foreground: oklch(21.03% 0.0015 225.74);
+  --separator: oklch(92.00% 0.0015 225.74);
+  --success: oklch(73.29% 0.1941 147.44);
+  --success-foreground: oklch(21.03% 0.0059 147.44);
+  --surface: oklch(100.00% 0.0008 225.74);
+  --surface-foreground: oklch(21.03% 0.0015 225.74);
+  --surface-secondary: oklch(95.24% 0.0012 225.74);
+  --surface-secondary-foreground: oklch(21.03% 0.0015 225.74);
+  --surface-tertiary: oklch(93.73% 0.0012 225.74);
+  --surface-tertiary-foreground: oklch(21.03% 0.0015 225.74);
+  --warning: oklch(78.19% 0.1590 68.96);
+  --warning-foreground: oklch(21.03% 0.0059 68.96);
+
+  --circle: #c5d86d;
+
+  --radius: 0.5rem;
+  --field-radius: 0.75rem;
+
+  --font-sans: var(--font-inter);
+}
+
+
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --accent: oklch(43.29% 0.0547 225.74);
+  --accent-foreground: oklch(99.11% 0 0);
+  /* --background: oklch(12.00% 0.0015 225.74); */
+  --background: oklab(18.44% -0.00328 0.00521);
+
+  --border: oklch(28.00% 0.0015 225.74);
+  --danger: oklch(59.40% 0.1973 21.26);
+  --danger-foreground: oklch(99.11% 0 0);
+  --default: oklch(27.40% 0.0015 225.74);
+  --default-foreground: oklch(99.11% 0 0);
+  --field-background: oklch(21.03% 0.0030 225.74);
+  --field-border: transparent;
+  --field-foreground: oklch(99.11% 0.0015 225.74);
+  --field-placeholder: oklch(70.50% 0.0030 225.74);
+  --focus: oklch(43.29% 0.0547 225.74);
+  /* --foreground: oklch(99.11% 0.0015 225.74); */
+  --foreground: oklab(91.435% -0.01579 0.04337);
+  --muted: oklch(70.50% 0.0030 225.74);
+  --overlay: oklch(21.03% 0.0030 225.74);
+  --overlay-foreground: oklch(99.11% 0.0015 225.74);
+  --scrollbar: oklch(70.50% 0.0015 225.74);
+  --segment: oklch(39.64% 0.0015 225.74);
+  --segment-foreground: oklch(99.11% 0.0015 225.74);
+  --separator: oklch(25.00% 0.0015 225.74);
+  --success: oklch(73.29% 0.1941 147.44);
+  --success-foreground: oklch(21.03% 0.0059 147.44);
+  --surface: oklch(21.03% 0.0030 225.74);
+  --surface-foreground: oklch(99.11% 0.0015 225.74);
+  --surface-secondary: oklch(25.70% 0.0023 225.74);
+  --surface-secondary-foreground: oklch(99.11% 0.0015 225.74);
+  --surface-tertiary: oklch(27.21% 0.0023 225.74);
+  --surface-tertiary-foreground: oklch(99.11% 0.0015 225.74);
+  --warning: oklch(82.03% 0.1392 72.97);
+  --warning-foreground: oklch(21.03% 0.0059 72.97);
+
+  --circle: #1c4253;
+
+}
+
+
+
 
 /*
  * HeroUI Theme Customization
@@ -53,15 +145,15 @@ body {
  * @see https://heroui.com/docs/react/getting-started/theming
  */
 
-:root,
+/* :root,
 .light,
 .default,
 [data-theme="light"],
 [data-theme="default"] {
   --accent: oklch(54.44% 0.0846 130.46);
+  
   --accent-foreground: oklch(99.11% 0 0);
   --background: oklab(91.435% -0.01579 0.04337);
-  /* --background: oklab(97.667% -0.00339 0.01125); */
   --border: oklab(87.746% -0.02206 0.06191);
   --danger: oklch(65.32% 0.2335 10.94); 
   --danger-foreground: oklch(99.11% 0 0);
@@ -97,14 +189,14 @@ body {
   --field-radius: 0.75rem;
 
   --font-sans: var(--font-inter);
-}
+} */
 
-.dark,
+
+/* .dark,
 [data-theme="dark"] {
   color-scheme: dark;
   --accent: oklch(54.44% 0.0846 130.46);
   --accent-foreground: oklch(99.11% 0 0);
-  /* --background: oklab(18.518% -0.01613 -0.0109); */
   --background: oklab(18.44% -0.00328 0.00521);
   --border: oklch(28.00% 0.0015 130.46);
   --danger: oklch(59.40% 0.1973 9.83);
@@ -136,4 +228,4 @@ body {
   --warning-foreground: oklch(21.03% 0.0059 61.54);
 
   --circle: #1c4253;
-}
+} */

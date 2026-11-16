@@ -47,7 +47,7 @@ export default function Navbar() {
                     height={500}
                     width={500}
                     alt="banner"
-                    className="w-15 aspect-square object-contain " />
+                    className="w-15 aspect-square object-contain hue-rotate-100 brightness-70 saturate-150" />
                 <h2>Shongjog</h2>
             </Link>
 
@@ -96,7 +96,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 {!session &&
-                    <div className="grid gap-2 pt-8 border-t mt-2 *:w-full">
+                    <div className="grid gap-2 pt-8 border-t mt-4 *:w-full">
                         {signingButtons}
                     </div>
                 }
