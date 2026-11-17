@@ -47,7 +47,7 @@ export default function Navbar() {
                     height={500}
                     width={500}
                     alt="banner"
-                    className="w-15 aspect-square object-contain hue-rotate-100 brightness-70 saturate-150" />
+                    className="w-15 aspect-square object-contain" />
                 <h2>Shongjog</h2>
             </Link>
 

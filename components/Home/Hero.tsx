@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { LuCalendarDays, LuCirclePlus } from "react-icons/lu";
@@ -6,55 +5,76 @@ import { LuCalendarDays, LuCirclePlus } from "react-icons/lu";
 export default function Hero() {
     return (
         <section className="mx-auto w-full px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
-            <div className="mx-auto max-w-3xl text-center">
-                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent/70">
-                    Community · Action · Change
-                </p>
+            <div className="min-h-screen w-full relative bg-background lg:bg-transparent">
+                {/* Diagonal Fade Center Grid Background */}
+                <div
+                    className="absolute inset-0 -z-1"
+                    style={{
+                        backgroundImage: `
+                             linear-gradient(to right, var(--circle) 1px, transparent 1px),
+                             linear-gradient(to bottom, var(--circle) 1px, transparent 1px)
+                        `,
+                        backgroundSize: "50px 50px",
+                        WebkitMaskImage:
+                            "radial-gradient(ellipse 60% 60% at center, transparent 30%, #000 70%, transparent 80%)",
+                        maskImage:
+                            "radial-gradient(ellipse 60% 60% at center, transparent 30%, #000 70%, transparent 80%)",
+                    }}
+                />
+                {/* Your Content/Components */}
 
-                <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-                    Good things happen when people show up
-                </h1>
 
-                <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-                    Find local community events, join people who care, and take
-                    part in work that matters. From cleaning up your neighbourhood
-                    to distributing winter essentials, start with one small action.
-                </p>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent/70">
+                        Community · Action · Change
+                    </p>
 
-                <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                    <Link
-                        href="/events"
-                        className="button button--primary w-full sm:w-fit p-6 text-background"
-                    >
-                        <LuCalendarDays />
-                        Explore events
-                    </Link>
+                    <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+                        Good things happen when people show up
+                    </h1>
 
-                    <Link
-                        href="events/create"
-                        className="button button--outline w-full sm:w-fit p-6 text-accent border-accent/70"
-                    >
-                        <LuCirclePlus />
-                        Organize an event
-                    </Link>
+                    <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
+                        Find local community events, join people who care, and take
+                        part in work that matters. From cleaning up your neighbourhood
+                        to distributing winter essentials, start with one small action.
+                    </p>
+
+                    <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                        <Link
+                            href="/events"
+                            className="button button--primary w-full sm:w-fit p-6 text-background"
+                        >
+                            <LuCalendarDays />
+                            Explore events
+                        </Link>
+
+                        <Link
+                            href="events/create"
+                            className="button button--outline w-full sm:w-fit p-6 text-accent border-accent/70"
+                        >
+                            <LuCirclePlus />
+                            Organize an event
+                        </Link>
+                    </div>
+
+                    <p className="mt-5 text-sm text-foreground/70">
+                        A little time. A real contribution.
+                    </p>
                 </div>
 
-                <p className="mt-5 text-sm text-muted">
-                    A little time. A real contribution.
-                </p>
-            </div>
-
-            <div className="relative -mt-10 lg:-mt-30 xl:-mt-50 aspect-16/7 overflow-hidden rounded-2xl -z-1
+                <div className="relative -mt-10 lg:-mt-30 xl:-mt-50 aspect-16/7 overflow-hidden rounded-2xl -z-1
             bg-[radial-gradient(circle_at_bottom,var(--circle)_0%,transparent_60%)]
             ">
-                <Image
-                    src="/banner.png"
-                    alt="Community members working together on a local service initiative"
-                    fill
-                    priority
-                    className="object-cover"
-                />
+                    <Image
+                        src="/banner.png"
+                        alt="Community members working together on a local service initiative"
+                        fill
+                        priority
+                        className="object-cover"
+                    />
+                </div>
             </div>
+
             <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
                 {[
                     { number: "120+", label: "Events Organized" },
